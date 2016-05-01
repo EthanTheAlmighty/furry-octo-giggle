@@ -8,6 +8,11 @@ using System.Collections;
 [RequireComponent (typeof (CharacterController))]
 public class FirstPersonDrifter: MonoBehaviour
 {
+
+    public mlgVision Instance;
+
+    public int health = 3;
+
     public float walkSpeed = 6.0f;
     public float runSpeed = 10.0f;
  
@@ -52,6 +57,7 @@ public class FirstPersonDrifter: MonoBehaviour
     private Vector3 contactPoint;
     private bool playerControl = false;
     private int jumpTimer;
+    private bool vulnerable = true;
  
     void Start()
     {
@@ -140,6 +146,22 @@ public class FirstPersonDrifter: MonoBehaviour
  
         // Move the controller, and set grounded true or false depending on whether we're standing on something
         grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
+    }
+
+    void Update()
+    {
+        if(Instance.hasDorito && Instance.hasMtnDew)
+        {
+            walkSpeed = 20.0f;
+            runSpeed = 33.0f;
+            vulnerable = false;
+            speed = walkSpeed;
+        }
+
+        if(vulnerable)
+        {
+            health--;
+        }
     }
  
     // Store point that we're in contact with for use in FixedUpdate if needed

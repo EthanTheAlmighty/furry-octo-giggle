@@ -1,7 +1,4 @@
-﻿// original by asteins
-// adapted by @torahhorse
-// http://wiki.unity3d.com/index.php/SmoothMouseLook
-
+﻿
 // Instructions:
 // There should be one MouseLook script on the Player itself, and another on the camera
 // player's MouseLook should use MouseX, camera's MouseLook should use MouseY
